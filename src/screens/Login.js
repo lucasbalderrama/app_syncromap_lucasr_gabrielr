@@ -23,10 +23,11 @@ const Login = ({ navigation }) => {
         navigation.navigate("Cadastro")
     }
     return (
-        <View style={styles.container}>
+        <>
+            <View style={styles.container}>
                 <Image
                     style={styles.logo}
-                    source={require('../assets/logo/logo - syncro.png')}
+                    source={require('../assets/logo/logo-syncro.png')}
                 />
                 <TextInput
                     style={styles.input}
@@ -44,14 +45,15 @@ const Login = ({ navigation }) => {
                 <TouchableOpacity style={styles.button} onPress={tentarLogar}>
                     <Text style={styles.buttonText}>Entrar</Text>
                 </TouchableOpacity>
-        </View>
-        <View style={styles.textCadastro}>
+            </View>
+            <View style={styles.textCadastro}>
                 <TouchableOpacity onPress={redirecionarCadastro}>
                     <Text style={styles.linkCadastro}>
                         Não tem uma conta? <Text style={styles.linkDestacado}>Cadastre-se</Text>
                     </Text>
                 </TouchableOpacity>
-        </View>
+            </View>
+        </>
     );
 }
 
