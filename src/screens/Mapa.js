@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { View, TextInput, Button, StyleSheet } from 'react-native';
+import { View, TextInput, Button, StyleSheet, Image, TouchableOpacity } from 'react-native';
 import * as Location from 'expo-location';
 import MapView, { Marker } from 'react-native-maps';
 import { SafeAreaView } from 'react-native-safe-area-context';
@@ -21,6 +21,10 @@ export default function HomeScreen({ navigation }) {
         if (!destination || !location) return;
         navigation.navigate('Rotas', { destination, origin: location });
     };
+
+    const irPerfil = () => {
+        navigation.navigate('Perfil');
+    }
 
     return (
         <SafeAreaView style={styles.container}>
@@ -49,6 +53,12 @@ export default function HomeScreen({ navigation }) {
                 value={destination}
                 onChangeText={setDestination}
             />
+            <TouchableOpacity onPress={irPerfil} style={styles.iconePerfilContainer}>
+                <Image
+                    style={styles.iconePerfil}
+                    source={require('../assets/imagens-gerais/default-profile.jpg')}
+                />
+            </TouchableOpacity>
             <Button title="Navegar" onPress={handleNavigate} />
         </SafeAreaView>
     );
@@ -65,10 +75,24 @@ const styles = StyleSheet.create({
         position: 'absolute',
         top: 40,
         left: 10,
-        right: 10,
+        right: 56,
         backgroundColor: 'white',
         padding: 10,
         borderRadius: 8,
         elevation: 2,
+    },
+    iconePerfilContainer: {
+        position: 'absolute',
+        top: 40,
+        right: 8,
+        borderRadius: 250,
+        overflow: 'hidden',
+        width: 40,
+        height: 40,
+    },
+    iconePerfil: {
+        width: 40,
+        height: 40,
+        borderRadius: 20,
     },
 });

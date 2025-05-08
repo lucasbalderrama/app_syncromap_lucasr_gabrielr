@@ -48,7 +48,6 @@ const RouteScreen = ({ route }) => {
         getCoordinatesFromName();
     }, []);
 
-    // <-- Esse useEffect precisa estar aqui dentro!
     useEffect(() => {
         if (!destCoords) return;
 
