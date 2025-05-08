@@ -1,3 +1,4 @@
+// Lucas Randal e Gabriel Reis
 import React, { useEffect, useState } from 'react';
 import { View, TextInput, Button, StyleSheet, Image, TouchableOpacity } from 'react-native';
 import * as Location from 'expo-location';
@@ -38,13 +39,16 @@ export default function HomeScreen({ navigation }) {
                 }}
             >
                 {location && (
-                    <Marker
-                        coordinate={{
-                            latitude: location.latitude,
-                            longitude: location.longitude,
-                        }}
-                        title="Você está aqui"
-                    />
+                    <Marker coordinate={{ latitude: location.latitude, longitude: location.longitude, }} title="Você está aqui">
+                        <View style={{
+                            width: 20,
+                            height: 20,
+                            backgroundColor: '#038aff',
+                            borderRadius: 10,
+                            borderWidth: 2,
+                            borderColor: 'white',
+                        }} />
+                    </Marker>
                 )}
             </MapView>
             <TextInput

@@ -1,6 +1,6 @@
 {
   "expo": {
-    "name": "app_syncromap_lucasr_gabrielr",
+    "name": "SyncroMap",
     "slug": "app_syncromap_lucasr_gabrielr",
     "version": "1.0.0",
     "orientation": "portrait",
@@ -10,7 +10,7 @@
     "splash": {
       "image": "./src/assets/logo/logo-syncro.png",
       "resizeMode": "contain",
-      "backgroundColor": "#ffffff"
+      "backgroundColor": "#fff"
     },
     "ios": {
       "supportsTablet": true
@@ -18,7 +18,8 @@
     "android": {
       "adaptiveIcon": {
         "foregroundImage": "./src/assets/logo/logo-syncro.png",
-        "backgroundColor": "#ffffff"
+        "backgroundColor": "#ffffff",
+        "resizeMode": "contain"
       },
       "edgeToEdgeEnabled": true
     },

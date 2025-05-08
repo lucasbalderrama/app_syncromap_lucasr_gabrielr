@@ -1,27 +1,28 @@
-//Lucas Randal e Flavia
+//Lucas Randal e Gabriel Reis
 import React, { useState } from "react";
-import { View, Text, TextInput, TouchableOpacity, StyleSheet, Image } from 'react-native';
-import { getAuth, signInWithEmailAndPassword } from 'firebase/auth';
-import app from '../../firebaseConfig';
+import { View, Text, TextInput, TouchableOpacity, StyleSheet, Image, Alert } from 'react-native';
 
 const Login = ({ navigation }) => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
 
-    const tentarLogar = () => {
-        const auth = getAuth(app);
-        signInWithEmailAndPassword(auth, email, password)
-            .then(() => {
-                navigation.navigate('Mapa')
-            })
-            .catch(error => {
-                console.error('Login failed:', error);
-            })
+    const fazerLogin = () => {
+        if (!email.includes('@')) {
+            alert("Você não inseriu um email válido!");
+            return;
+        }
+
+        if (password === '707070' && email === 'sesi@gmail.com') {
+            navigation.navigate('Mapa');
+        } else {
+            Alert.alert("Atenção" , "Email ou senha inválidos!");
+        }
     }
 
     const redirecionarCadastro = () => {
         navigation.navigate("Cadastro")
     }
+
     return (
         <>
             <View style={styles.container}>
@@ -42,7 +43,7 @@ const Login = ({ navigation }) => {
                     onChangeText={setPassword}
                     value={password}
                 />
-                <TouchableOpacity style={styles.button} onPress={tentarLogar}>
+                <TouchableOpacity style={styles.button} onPress={fazerLogin}>
                     <Text style={styles.buttonText}>Entrar</Text>
                 </TouchableOpacity>
             </View>
@@ -102,27 +103,27 @@ const styles = StyleSheet.create({
         borderRadius: 5,
         marginBottom: 50,
         marginTop: 20,
-        shadowColor: "#2c2dd7",
+        shadowColor: "#2ca8b8",
         shadowOffset: {
             width: 5,
             height: 5,
         },
         shadowOpacity: 0.8,
-        borderColor: '#2c2dd7',
+        borderColor: '#2ca8b8',
         borderWidth: 2,
     },
     buttonText: {
-        color: '#2c2dd7',
+        color: '#2ca8b8',
         fontSize: 16,
         fontWeight: 'bold',
     },
     textCadastro: {
-        marginTop: 20,
         alignItems: 'center',
         justifyContent: 'center',
         backgroundColor: 'white',
         width: '100%',
         height: 30,
+        marginBottom: 40,
     },
 
     linkCadastro: {

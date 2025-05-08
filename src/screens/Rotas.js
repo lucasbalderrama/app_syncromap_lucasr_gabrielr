@@ -1,3 +1,4 @@
+// Lucas Randal e Gabriel Reis
 import React, { useEffect, useState } from 'react';
 import { View, Text, Alert, StyleSheet, ActivityIndicator } from 'react-native';
 import MapView, { Marker, Polyline } from 'react-native-maps';
@@ -118,13 +119,24 @@ const RouteScreen = ({ route }) => {
                     longitudeDelta: 0.05,
                 }}
             >
-                <Marker coordinate={origin} title="Origem" />
+                <Marker coordinate={origin} title="Origem">
+                    <View style={{
+                        width: 20,
+                        height: 20,
+                        backgroundColor: '#038aff',
+                        borderRadius: 10,
+                        borderWidth: 2,
+                        borderColor: 'white',
+                    }} />
+                </Marker>
+    
                 <Marker coordinate={destCoords} title="Destino" />
+    
                 {routeCoords.length > 0 && (
                     <Polyline coordinates={routeCoords} strokeWidth={5} strokeColor="blue" />
                 )}
             </MapView>
-
+    
             {info && (
                 <View style={styles.infoBox}>
                     <Text>Duração: {(info.duration / 60).toFixed(1)} min</Text>
@@ -132,7 +144,7 @@ const RouteScreen = ({ route }) => {
                 </View>
             )}
         </SafeAreaView>
-    );
+    );    
 };
 
 const styles = StyleSheet.create({
@@ -165,6 +177,10 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         backgroundColor: '#fff',
     },
+    alfineteOrigem: {
+        color: 'blue',
+        
+    }
 });
 
 export default RouteScreen;

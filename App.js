@@ -1,3 +1,4 @@
+// Lucas Randal e Gabriel Reis
 import "react-native-gesture-handler";
 import { NavigationContainer } from "@react-navigation/native";
 import StackNavigation from "./src/routes/Routes";

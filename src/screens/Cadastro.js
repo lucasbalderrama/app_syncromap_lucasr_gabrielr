@@ -1,145 +1,118 @@
-//
-//
-//Esse é o código do login, só pra não ficar sem nada
-//
-//
-//
-
+// Lucas Randal e Gabriel Reis
 import React, { useState } from "react";
-import { View, Text, TextInput, TouchableOpacity, StyleSheet, Image } from 'react-native';
-import { getAuth, signInWithEmailAndPassword } from 'firebase/auth';
-import app from '../../firebaseConfig';
+import {
+  View,
+  TextInput,
+  Pressable,
+  Text,
+  ImageBackground,
+  Image,
+  StyleSheet,
+  ScrollView,
+} from "react-native";
 
-const Login = ({ navigation }) => {
-    const [email, setEmail] = useState('');
-    const [password, setPassword] = useState('');
+export default function Cadastro({ navigation }) {
+  const [nomeCompleto, setNomeCompleto] = useState("");
+  const [email, setEmail] = useState("");
+  const [senha, setSenha] = useState("");
 
-    const tentarLogar = () => {
-        const auth = getAuth(app);
-        signInWithEmailAndPassword(auth, email, password)
-            .then(() => {
-                navigation.navigate('Mapa')
-            })
-            .catch(error => {
-                console.error('Login failed:', error);
-            })
-    }
+  const redirecionarLogin = () => {
+    navigation.navigate('Login');
+  };
 
-    const redirecionarCadastro = () => {
-        navigation.navigate("Cadastro")
-    }
-    return (
-        <>
-            <View style={styles.container}>
-                <Image
-                    style={styles.logo}
-                    source={require('../assets/logo/logo-syncro.png')}
-                />
-                <TextInput
-                    style={styles.input}
-                    placeholder="E-mail"
-                    onChangeText={setEmail}
-                    value={email}
-                />
-                <TextInput
-                    style={styles.input}
-                    placeholder="Senha"
-                    secureTextEntry={true}
-                    onChangeText={setPassword}
-                    value={password}
-                />
-                <TouchableOpacity style={styles.button} onPress={tentarLogar}>
-                    <Text style={styles.buttonText}>Entrar</Text>
-                </TouchableOpacity>
-            </View>
-            <View style={styles.textCadastro}>
-                <TouchableOpacity onPress={redirecionarCadastro}>
-                    <Text style={styles.linkCadastro}>
-                        Não tem uma conta? <Text style={styles.linkDestacado}>Cadastre-se</Text>
-                    </Text>
-                </TouchableOpacity>
-            </View>
-        </>
-    );
+  return (
+    <View>
+      <ScrollView
+        contentContainerStyle={styles.container}
+        keyboardShouldPersistTaps="handled"
+      >
+        <Image source={require("../assets/logo/logo-syncro.png")} style={styles.logo} />
+
+        <TextInput
+          style={styles.campo}
+          placeholder="Nome completo"
+          placeholderTextColor="#555"
+          value={nomeCompleto}
+          onChangeText={setNomeCompleto}
+        />
+
+        <TextInput
+          style={styles.campo}
+          placeholder="E-mail"
+          placeholderTextColor="#555"
+          keyboardType="email-address"
+          autoCapitalize="none"
+          value={email}
+          onChangeText={setEmail}
+        />
+
+        <TextInput
+          style={styles.campo}
+          placeholder="Senha"
+          placeholderTextColor="#555"
+          secureTextEntry
+          value={senha}
+          onChangeText={setSenha}
+        />
+
+        <Pressable style={styles.botao} onPress={redirecionarLogin}>
+          <Text style={styles.textoBotao}>Criar conta</Text>
+        </Pressable>
+      </ScrollView>
+    </View>
+  );
 }
 
 const styles = StyleSheet.create({
-    background: {
-        flex: 1,
-        justifyContent: 'center',
-        alignItems: 'center',
-        width: '100%',
-        height: '100%',
-    },
-    container: {
-        flex: 1,
-        alignItems: 'center',
-        justifyContent: 'center',
-        paddingHorizontal: 20,
-    },
-    logo: {
-        width: 300,
-        height: 300,
-        resizeMode: 'contain',
-        marginBottom: -50,
-        marginTop: 50,
-    },
-    input: {
-        height: 40,
-        borderColor: 'gray',
-        borderWidth: 1,
-        backgroundColor: 'white',
-        marginBottom: 20,
-        width: 300,
-        paddingLeft: 10,
-        borderRadius: 8,
-        zIndex: 10,
-        shadowColor: "#c1c1c1",
-        shadowOffset: {
-            width: 3,
-            height: 3,
-        },
-        shadowOpacity: 0.8,
-    },
-    button: {
-        backgroundColor: '#fff',
-        paddingVertical: 10,
-        paddingHorizontal: 40,
-        borderRadius: 5,
-        marginBottom: 50,
-        marginTop: 20,
-        shadowColor: "#2c2dd7",
-        shadowOffset: {
-            width: 5,
-            height: 5,
-        },
-        shadowOpacity: 0.8,
-        borderColor: '#2c2dd7',
-        borderWidth: 2,
-    },
-    buttonText: {
-        color: '#2c2dd7',
-        fontSize: 16,
-        fontWeight: 'bold',
-    },
-    textCadastro: {
-        marginTop: 20,
-        alignItems: 'center',
-        justifyContent: 'center',
-        backgroundColor: 'white',
-        width: '100%',
-        height: 30,
-    },
-
-    linkCadastro: {
-        fontSize: 16,
-        color: '#000',
-    },
-
-    linkDestacado: {
-        color: '#2c2dd7',
-        textDecorationLine: 'underline',
-    },
+  fundo: {
+    flex: 1,
+    justifyContent: "center",
+    alignItems: "center",
+    width: "100%",
+    height: "100%",
+  },
+  container: {
+    width: "100%",
+    padding: 20,
+    justifyContent: "center",
+    alignItems: "center",
+    paddingTop: 30,
+    paddingBottom: 60,
+  },
+  logo: {
+    width: 320,
+    height: 320,
+    resizeMode: "contain",
+    marginBottom: -60,
+    marginTop: 70,
+  },
+  campo: {
+    position: 'relative',
+    borderColor: "gray",
+    borderWidth: 1,
+    backgroundColor: "white",
+    marginBottom: 20,
+    width: 300,
+    height: 40,
+    paddingLeft: 10,
+    borderRadius: 8,
+    shadowColor: "#c1c1c1",
+    shadowOffset: { width: 3, height: 3 },
+    shadowOpacity: 0.8,
+  },
+  botao: {
+    backgroundColor: "#fff",
+    paddingVertical: 10,
+    paddingHorizontal: 40,
+    borderRadius: 5,
+    marginBottom: 30,
+    marginTop: 10,
+    borderColor: '#2ca8b8',
+    borderWidth: 2,
+  },
+  textoBotao: {
+    color: "#2ca8b8",
+    fontSize: 16,
+    fontWeight: "bold",
+  },
 });
-
-export default Login;
